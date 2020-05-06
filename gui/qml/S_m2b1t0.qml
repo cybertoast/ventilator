@@ -7,6 +7,7 @@ Item {
     id: name
     height: 800
     property int flickableheight: flickable.contentHeight
+    property int ieratio: 1
 
 
     Rectangle {
@@ -49,6 +50,9 @@ Item {
                     id: control
                     text: qsTr("1:1")
                     ButtonGroup.group: radioGroup
+                    onClicked:{
+                        name.ieratio=0
+                    }
 
                     indicator: Rectangle {
                         implicitWidth: 20
@@ -82,9 +86,11 @@ Item {
                 }
                 RadioButton {
                     id: control2
-                    text: qsTr("1:1")
                     ButtonGroup.group: radioGroup
                     checked: true
+                    onClicked:{
+                        name.ieratio=1
+                    }
 
                     indicator: Rectangle {
                         implicitWidth: 20
@@ -119,8 +125,10 @@ Item {
 
                 RadioButton {
                     id: control3
-                    text: qsTr("1:1")
                     ButtonGroup.group: radioGroup
+                    onClicked:{
+                        name.ieratio=2
+                    }
                     indicator: Rectangle {
                         x: control3.leftPadding
                         y: parent.height / 2 - height / 2
@@ -153,6 +161,9 @@ Item {
                     id: control4
                     text: qsTr("1:4")
                     ButtonGroup.group: radioGroup
+                    onClicked:{
+                        name.ieratio=3
+                    }
                     indicator: Rectangle {
                         x: control4.leftPadding
                         y: parent.height / 2 - height / 2
@@ -731,7 +742,7 @@ Item {
                         target: QmlBridge
 
                     }
-                    onReleased: QmlBridge.sendPAC(2, slider2.value,slider3.value,slider4.value,slider7.value,slider8.value)
+                    onReleased: QmlBridge.sendPAC(name.ieratio, slider2.value,slider3.value,slider4.value,slider7.value,slider8.value)
                 }
 
                 Text {
