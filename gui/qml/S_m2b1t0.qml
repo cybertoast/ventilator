@@ -6,6 +6,7 @@ import "./config.js" as Config
 Item {
     id: name
     height: 800
+    property int flickableheight: flickable.contentHeight
 
 
     Rectangle {
@@ -17,7 +18,7 @@ Item {
             id: flickable
             anchors.rightMargin: 0
             anchors.leftMargin: 0
-            contentHeight: 650
+            contentHeight: 550
             anchors.fill: parent
 
             Text {
@@ -464,8 +465,8 @@ Item {
                     implicitHeight: 4
                     implicitWidth: 200
                 }
-                stepSize: 5
-                value: 0.5
+                stepSize: 1
+                value: 60
                 spacing: 0
                 Text {
                     id: title8

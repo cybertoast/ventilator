@@ -4,7 +4,11 @@ import QtQuick.Layouts 1.0
 import "src/cards"
 import "./material/qml/material"
 
+
 Item {
+    id: root
+    signal presetClicked()
+
     Rectangle {
         id: bg
         width: 800
@@ -40,6 +44,7 @@ Item {
 
             ViewMonitorPreset{
                 anchors.fill: parent
+                onClicked: root.presetClicked()
 
             }
         }

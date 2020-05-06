@@ -5,6 +5,7 @@ import "./src/variables/fontawesome.js" as FontAwesome
 import "./src/lists"
 import "./material/qml/material"
 import "./config.js" as Config
+import "."
 
 //        Button {
 //            id: button
@@ -39,8 +40,15 @@ Item {
             Item {
                 id: viewmonitor
                 anchors.fill: parent
+
+
                 ViewMonitor{
                     anchors.fill: parent
+                    onPresetClicked: {
+                        sidebar.openTab()
+                        viewmodeview.presetClicked()
+
+                    }
                 }
             }
 
@@ -48,6 +56,7 @@ Item {
                 id: viewmode
                 anchors.fill: parent
                 ViewMode{
+                    id: viewmodeview
                     anchors.fill: parent
                 }
             }

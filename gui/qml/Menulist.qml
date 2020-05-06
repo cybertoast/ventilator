@@ -3,11 +3,21 @@ import "./src/variables/fontawesome.js" as FontAwesome
 import "./src/lists"
 import "./config.js" as Config
 import QtQuick.Layouts 1.0
+import "."
 
 Item {
     id: sidebar
     width: Config.sidebar_height
     property int currentView: 0
+    signal openTab()
+    onOpenTab: {
+        currentView = 1
+        menulist.model.get(0).class_name="dark"
+        menulist.model.get(1).class_name="light"
+        menulist.model.get(2).class_name="dark"
+        menulist.model.get(3).class_name="dark"
+    }
+
     Rectangle{
 
         id: sidebarrectangle
@@ -28,33 +38,32 @@ Item {
                 anchors.leftMargin: 0
                 anchors.right: parent.right
                 anchors.rightMargin: 0
+
                 IconListView{
                     id: menulist
+                    anchors.rightMargin: 1
                     anchors.fill: parent
+
                     onItemClicked: {
                         if (menulist.model.get(index).text === "Monitor") {
-                            console.log(0)
                             currentView = 0
                             menulist.model.get(0).class_name="light"
                             menulist.model.get(1).class_name="dark"
                             menulist.model.get(2).class_name="dark"
                             menulist.model.get(3).class_name="dark"
                         } else if (menulist.model.get(index).text === "Set Mode") {
-                            console.log(1)
                             currentView = 1
                             menulist.model.get(0).class_name="dark"
                             menulist.model.get(1).class_name="light"
                             menulist.model.get(2).class_name="dark"
                             menulist.model.get(3).class_name="dark"
                         } else if(menulist.model.get(index).text === "Patient"){
-                            console.log(2)
                             currentView = 2
                             menulist.model.get(0).class_name="dark"
                             menulist.model.get(1).class_name="dark"
                             menulist.model.get(2).class_name="light"
                             menulist.model.get(3).class_name="dark"
                         } else {
-                            console.log(3)
                             currentView = 3
                             menulist.model.get(0).class_name="dark"
                             menulist.model.get(1).class_name="dark"
@@ -121,7 +130,7 @@ Item {
             font.pixelSize: 12
         }
 
-        RowLayout {
+        Row {
             id: monitorrow
             property int pip:25
             property int vt: 10
@@ -131,6 +140,7 @@ Item {
             property string mode: "PAC"
 
             y: 170
+            spacing: 0
             anchors.left: parent.left
             anchors.right: parent.right
             Connections{
@@ -149,50 +159,66 @@ Item {
 
 
 
-            ColumnLayout {
+            Column {
                 id: column1
-                width:Config.sidebar_width
+                width:Config.sidebar_width/2
+                Layout.fillHeight: false
+                Layout.fillWidth: false
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
                 Text {
                     id: piptext
                     color: "#ffffff"
                     text: monitorrow.pip
+                    anchors.left: parent.left
+                    anchors.leftMargin: 0
+                    anchors.right: parent.right
                     Layout.fillWidth: true
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 36
+                    font.pixelSize: Config.sidebar_livetext_size1
                 }
 
                 Text {
                     id: element2
                     color: "#ffffff"
                     text: qsTr("PIP")
+                    anchors.left: parent.left
+                    anchors.leftMargin: 0
+                    anchors.right: parent.right
                     Layout.fillWidth: true
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
                     styleColor: "#ffffff"
-                    font.pixelSize: 16
+                    font.pixelSize: Config.sidebar_livetext_size2
                 }
 
                 Text {
                     id: element3
                     color: "#f9f9f9"
                     text: qsTr("cmH2O")
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    anchors.leftMargin: 0
                     Layout.fillWidth: true
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 12
+                    font.pixelSize: Config.sidebar_livetext_size3
                 }
             }
 
-            ColumnLayout {
+            Column {
                 id: column2
-                width: Config.sidebar_height/2
+                width: Config.sidebar_width/2
+                Layout.fillWidth: false
                 Text {
                     id: element4
                     color: "#ffffff"
                     text: monitorrow.vt
-                    font.pixelSize: 36
+                    anchors.left: parent.left
+                    anchors.leftMargin: 0
+                    anchors.right: parent.right
+                    font.pixelSize: Config.sidebar_livetext_size1
                     horizontalAlignment: Text.AlignHCenter
                     Layout.fillWidth: true
                     verticalAlignment: Text.AlignVCenter
@@ -202,7 +228,10 @@ Item {
                     id: element5
                     color: "#ffffff"
                     text: qsTr("Vt")
-                    font.pixelSize: 16
+                    anchors.left: parent.left
+                    anchors.leftMargin: 0
+                    anchors.right: parent.right
+                    font.pixelSize: Config.sidebar_livetext_size2
                     styleColor: "#ffffff"
                     horizontalAlignment: Text.AlignHCenter
                     Layout.fillWidth: true
@@ -213,7 +242,10 @@ Item {
                     id: element7
                     color: "#f9f9f9"
                     text: qsTr("ml")
-                    font.pixelSize: 12
+                    anchors.left: parent.left
+                    anchors.leftMargin: 0
+                    anchors.right: parent.right
+                    font.pixelSize: Config.sidebar_livetext_size3
                     horizontalAlignment: Text.AlignHCenter
                     Layout.fillWidth: true
                     verticalAlignment: Text.AlignVCenter
@@ -223,6 +255,7 @@ Item {
 
         RowLayout {
             y: 257
+            spacing: 0
             anchors.left: parent.left
             anchors.right: parent.right
             ColumnLayout {
@@ -231,7 +264,7 @@ Item {
                     id: element8
                     color: "#ffffff"
                     text: monitorrow.rate
-                    font.pixelSize: 36
+                    font.pixelSize: Config.sidebar_livetext_size1
                     horizontalAlignment: Text.AlignHCenter
                     Layout.fillWidth: true
                     verticalAlignment: Text.AlignVCenter
@@ -241,7 +274,7 @@ Item {
                     id: element9
                     color: "#ffffff"
                     text: qsTr("Rate")
-                    font.pixelSize: 16
+                    font.pixelSize: Config.sidebar_livetext_size2
                     styleColor: "#ffffff"
                     horizontalAlignment: Text.AlignHCenter
                     Layout.fillWidth: true
@@ -252,7 +285,7 @@ Item {
                     id: element10
                     color: "#f9f9f9"
                     text: qsTr("BPM")
-                    font.pixelSize: 12
+                    font.pixelSize: Config.sidebar_livetext_size3
                     horizontalAlignment: Text.AlignHCenter
                     Layout.fillWidth: true
                     verticalAlignment: Text.AlignVCenter
@@ -266,7 +299,7 @@ Item {
                     id: element11
                     color: "#ffffff"
                     text: monitorrow.peep
-                    font.pixelSize: 36
+                    font.pixelSize: Config.sidebar_livetext_size1
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -276,7 +309,7 @@ Item {
                     id: element12
                     color: "#ffffff"
                     text: qsTr("PEEP")
-                    font.pixelSize: 16
+                    font.pixelSize: Config.sidebar_livetext_size2
                     styleColor: "#ffffff"
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignHCenter
@@ -287,7 +320,7 @@ Item {
                     id: element13
                     color: "#f9f9f9"
                     text: qsTr("cmH2O")
-                    font.pixelSize: 12
+                    font.pixelSize: Config.sidebar_livetext_size3
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -297,6 +330,7 @@ Item {
 
         RowLayout {
             y: 345
+            spacing: 0
             anchors.left: parent.left
             anchors.right: parent.right
             ColumnLayout {
@@ -306,7 +340,7 @@ Item {
                     id: element14
                     color: "#ffffff"
                     text: monitorrow.fio2
-                    font.pixelSize: 36
+                    font.pixelSize: Config.sidebar_livetext_size1
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -316,7 +350,7 @@ Item {
                     id: element15
                     color: "#ffffff"
                     text: qsTr("FIO2")
-                    font.pixelSize: 16
+                    font.pixelSize: Config.sidebar_livetext_size2
                     styleColor: "#ffffff"
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignHCenter
@@ -327,7 +361,7 @@ Item {
                     id: element16
                     color: "#f9f9f9"
                     text: qsTr("%")
-                    font.pixelSize: 12
+                    font.pixelSize: Config.sidebar_livetext_size3
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -341,7 +375,7 @@ Item {
                     id: element20
                     color: "#ffffff"
                     text: monitorrow.mode
-                    font.pixelSize: 36
+                    font.pixelSize: Config.sidebar_livetext_size1
                     horizontalAlignment: Text.AlignHCenter
                     Layout.fillWidth: true
                     verticalAlignment: Text.AlignVCenter
@@ -351,7 +385,7 @@ Item {
                     id: element21
                     color: "#ffffff"
                     text: qsTr("Mode")
-                    font.pixelSize: 16
+                    font.pixelSize: Config.sidebar_livetext_size2
                     styleColor: "#ffffff"
                     horizontalAlignment: Text.AlignHCenter
                     Layout.fillWidth: true
@@ -361,7 +395,7 @@ Item {
                 Text {
                     id: element22
                     color: "#f9f9f9"
-                    font.pixelSize: 12
+                    font.pixelSize: Config.sidebar_livetext_size3
                     horizontalAlignment: Text.AlignHCenter
                     Layout.fillWidth: true
                     verticalAlignment: Text.AlignVCenter
@@ -374,6 +408,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:13;anchors_x:2}D{i:22;anchors_x:2}D{i:31;anchors_x:2}
+    D{i:0;formeditorZoom:1.75}D{i:22;anchors_x:2}D{i:13;anchors_x:2}D{i:31;anchors_x:2}
 }
 ##^##*/
