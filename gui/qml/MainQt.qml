@@ -5,6 +5,7 @@ Window {
     visible: true
     width: 800
     height: 460
+    visibility: "FullScreen"
     title: qsTr("Hello World")
 
     MainGo{
