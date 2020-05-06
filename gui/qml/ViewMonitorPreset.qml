@@ -3,12 +3,14 @@ import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.0
 import "src/cards"
 import "./material/qml/material"
+import QtGraphicalEffects 1.0
 
 Item {
     id: root
     height: 300
     width: moderow.width+moderow.spacing
     signal clicked()
+
 
     Flickable {
         id: flickable
@@ -72,12 +74,12 @@ Item {
                     }
                 }
 
-//                MouseArea {
-//                    anchors.fill: parent
-//                    Connections {
-//                        target: QmlBridge
-//                    }
-//                }
+                //                MouseArea {
+                //                    anchors.fill: parent
+                //                    Connections {
+                //                        target: QmlBridge
+                //                    }
+                //                }
             }
 
             Rectangle {
@@ -292,11 +294,26 @@ Item {
         }
     }
 
+
+//    Rectangle {
+//        id: gradient
+
+//        anchors.fill: parent
+//        LinearGradient {
+//            anchors.fill: parent
+//            start: 30
+//            end: 50
+//            gradient: Gradient {
+//                GradientStop { position: 0.0; color: "white" }
+//                GradientStop { position: 1.0; color: "black" }
+//            }
+//        }
+//    }
 }
 
 /*##^##
 Designer {
-    D{i:21;anchors_width:193;anchors_x:-69}D{i:20;anchors_x:70}D{i:27;anchors_width:193;anchors_x:-69}
-D{i:26;anchors_x:70}D{i:33;anchors_x:-69}D{i:32;anchors_x:70}D{i:2;anchors_x:8}
+    D{i:0;formeditorZoom:0.5}D{i:20;anchors_x:70}D{i:26;anchors_x:70}D{i:21;anchors_width:193;anchors_x:"-69"}
+D{i:32;anchors_x:70}D{i:27;anchors_width:193;anchors_x:"-69"}D{i:2;anchors_x:8}D{i:33;anchors_height:200;anchors_width:200;anchors_x:143;anchors_y:170}
 }
 ##^##*/

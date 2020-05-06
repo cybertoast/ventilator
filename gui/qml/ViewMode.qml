@@ -5,7 +5,6 @@ import "./material/qml/material"
 import "./config.js" as Config
 import "./ViewModeSelector.js" as VMS
 
-
 Item {
     id: name
     width: 650
@@ -34,8 +33,6 @@ Item {
                     anchors.right: parent.right
                     font.pointSize: 32
                 }
-
-
 
                 Row {
                     id: row

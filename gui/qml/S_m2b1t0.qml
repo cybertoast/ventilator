@@ -235,6 +235,49 @@ Item {
                     text: slider2.from
                     font.pixelSize: 12
                 }
+
+                MouseArea {
+                    id: ma1
+                    x: -59
+                    y: 0
+                    width: 40
+                    height: 30
+                    onClicked: {
+                        slider2.value=slider2.value-slider2.stepSize
+                    }
+
+                    Text {
+                        id: minus1
+                        color: Config.color_dark
+                        text: "\uf068"
+                        anchors.fill: parent
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        font.family: webFont
+                        font.pixelSize: 18
+                    }
+                }
+
+                MouseArea {
+                    id: ma2
+                    x: 395
+                    y: 0
+                    width: 40
+                    height: 30
+                    onClicked: {
+                        slider2.value=slider2.value+slider2.stepSize
+                    }
+                    Text {
+                        id: plus1
+                        color: Config.color_dark
+                        text: "\uf067"
+                        font.family: webFont
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 18
+                    }
+                }
                 handle: Rectangle {
                     x: slider2.leftPadding + slider2.visualPosition * (slider2.availableWidth - width)
                     y: slider2.topPadding + slider2.availableHeight / 2 - height / 2
@@ -298,6 +341,48 @@ Item {
                     y: 7
                     text: slider3.from
                     font.pixelSize: 12
+                }
+
+                MouseArea {
+                    id: ma3
+                    x: -59
+                    y: 0
+                    width: 40
+                    height: 30
+                    onClicked: {
+                        slider3.value=slider3.value-slider3.stepSize
+                    }
+                    Text {
+                        id: minus2
+                        color: Config.color_dark
+                        text: "\uf068"
+                        font.family: webFont
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 18
+                    }
+                }
+
+                MouseArea {
+                    id: ma4
+                    x: 395
+                    y: 0
+                    width: 40
+                    height: 30
+                    onClicked: {
+                        slider3.value=slider3.value+slider3.stepSize
+                    }
+                    Text {
+                        id: plus2
+                        color: Config.color_dark
+                        text: "\uf067"
+                        font.family: webFont
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 18
+                    }
                 }
                 handle: Rectangle {
                     x: slider3.leftPadding + slider3.visualPosition * (slider3.availableWidth - width)
@@ -363,6 +448,48 @@ Item {
                     text: slider4.from
                     font.pixelSize: 12
                 }
+
+                MouseArea {
+                    id: ma5
+                    x: -59
+                    y: 0
+                    width: 40
+                    height: 30
+                    onClicked: {
+                        slider4.value=slider4.value-slider4.stepSize
+                    }
+                    Text {
+                        id: minus3
+                        color: Config.color_dark
+                        text: "\uf068"
+                        font.family: webFont
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 18
+                    }
+                }
+
+                MouseArea {
+                    id: ma6
+                    x: 395
+                    y: 0
+                    width: 40
+                    height: 30
+                    onClicked: {
+                        slider4.value=slider4.value+slider4.stepSize
+                    }
+                    Text {
+                        id: plus3
+                        color: Config.color_dark
+                        text: "\uf067"
+                        font.family: webFont
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 18
+                    }
+                }
                 handle: Rectangle {
                     x: slider4.leftPadding + slider4.visualPosition * (slider4.availableWidth - width)
                     y: slider4.topPadding + slider4.availableHeight / 2 - height / 2
@@ -426,6 +553,48 @@ Item {
                     y: 7
                     text: slider7.from
                     font.pixelSize: 12
+                }
+
+                MouseArea {
+                    id: ma7
+                    x: -59
+                    y: 0
+                    width: 40
+                    height: 30
+                    onClicked: {
+                        slider7.value=slider7.value-slider7.stepSize
+                    }
+                    Text {
+                        id: minus4
+                        color: Config.color_dark
+                        text: "\uf068"
+                        font.family: webFont
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 18
+                    }
+                }
+
+                MouseArea {
+                    id: ma8
+                    x: 395
+                    y: 0
+                    width: 40
+                    height: 30
+                    onClicked: {
+                        slider7.value=slider7.value+slider7.stepSize
+                    }
+                    Text {
+                        id: plus4
+                        color: Config.color_dark
+                        text: "\uf067"
+                        font.family: webFont
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 18
+                    }
                 }
                 handle: Rectangle {
                     x: slider7.leftPadding + slider7.visualPosition * (slider7.availableWidth - width)
@@ -492,6 +661,48 @@ Item {
                     text: slider8.from
                     font.pixelSize: 12
                 }
+
+                MouseArea {
+                    id: ma9
+                    x: -59
+                    y: 0
+                    width: 40
+                    height: 30
+                    onClicked: {
+                        slider8.value=slider8.value-slider8.stepSize
+                    }
+                    Text {
+                        id: minus5
+                        color: Config.color_dark
+                        text: "\uf068"
+                        font.family: webFont
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 18
+                    }
+                }
+
+                MouseArea {
+                    id: ma10
+                    x: 395
+                    y: 0
+                    width: 40
+                    height: 30
+                    onClicked: {
+                        slider8.value=slider8.value+slider8.stepSize
+                    }
+                    Text {
+                        id: plus5
+                        color: Config.color_dark
+                        text: "\uf067"
+                        font.family: webFont
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 18
+                    }
+                }
                 handle: Rectangle {
                     x: slider8.leftPadding + slider8.visualPosition * (slider8.availableWidth - width)
                     y: slider8.topPadding + slider8.availableHeight / 2 - height / 2
@@ -547,8 +758,10 @@ Item {
 /*##^##
 Designer {
     D{i:0;formeditorZoom:1.5}D{i:8;anchors_height:8;anchors_width:8;anchors_x:6;anchors_y:6}
-D{i:9;anchors_height:8;anchors_width:8;anchors_x:6;anchors_y:6}D{i:52;anchors_height:8;anchors_width:8;anchors_x:6;anchors_y:6}
-D{i:53;anchors_height:8;anchors_width:8;anchors_x:6;anchors_y:6}D{i:2;anchors_height:300;anchors_width:300;anchors_x:88;anchors_y:128}
+D{i:9;anchors_height:8;anchors_width:8;anchors_x:6;anchors_y:6}D{i:29;anchors_x:11;anchors_y:0}
+D{i:31;anchors_x:11;anchors_y:0}D{i:55;anchors_height:8;anchors_width:8;anchors_x:6;anchors_y:6}
+D{i:56;anchors_height:8;anchors_width:8;anchors_x:6;anchors_y:6}D{i:57;anchors_height:8;anchors_width:8;anchors_x:6;anchors_y:6}
+D{i:54;anchors_height:8;anchors_width:8;anchors_x:6;anchors_y:6}D{i:2;anchors_height:300;anchors_width:300;anchors_x:88;anchors_y:128}
 D{i:1;anchors_height:200;anchors_width:200}
 }
 ##^##*/
