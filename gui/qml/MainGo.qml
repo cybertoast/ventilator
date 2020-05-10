@@ -1,23 +1,11 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.13
+import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import "./src/variables/fontawesome.js" as FontAwesome
 import "./src/lists"
 import "./material/qml/material"
 import "./config.js" as Config
 import "."
-
-//        Button {
-//            id: button
-//            x: 34
-//            y: 218
-//            text: qsTr("Button")
-//            Connections{
-//                target: QmlBridge
-//            }
-//            onClicked: QmlBridge.sendToGo("hello from qml")
-//        }
-
 
 Item {
     id: element
@@ -81,7 +69,7 @@ Item {
 
     FontLoader { id: webFont; source: "./src/variables/fontawesome-webfont.ttf" }
 
-    Menulist{
+    SideBar{
         id: sidebar
         anchors.left: parent.left
         anchors.leftMargin: 0

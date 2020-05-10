@@ -1,9 +1,17 @@
 import QtQuick 2.0
-import QtCharts 2.3
+import QtCharts 2.2
 import QtQuick.Controls 2.0
 import "./config.js" as Config
 
 Item {
+
+    id: mainItem
+    signal reemitted(point p)
+    // connects to reemitted
+    Component.onCompleted: Manager.dataReady.connect(mainItem.reemitted)
+    onReemitted: {
+        series1.addpoint(p.y)
+    }
 
     Rectangle {
         id: chartsarea

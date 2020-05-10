@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.13
+import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import "src/cards"
 import "./material/qml/material"
@@ -45,7 +45,9 @@ Item {
                         anchors.left: parent.left
                         anchors.right: parent.right
                         rippleColor: "#deffffff"
-                        onClicked: root.clicked()
+                        onClicked: {
+                            root.clicked()
+                        }
                     }
 
                     Text {
@@ -53,14 +55,6 @@ Item {
                         x: 45
                         y: 8
                         text: qsTr("Pressure A/C")
-                        ToolSeparator {
-                            id: toolSeparator1
-                            x: -45
-                            y: 19
-                            width: 193
-                            height: 13
-                            orientation: Qt.Horizontal
-                        }
                         font.pixelSize: 18
                     }
 
@@ -110,14 +104,7 @@ Item {
                         x: 45
                         y: 8
                         text: qsTr("VOLUME A/C")
-                        ToolSeparator {
-                            id: toolSeparator
-                            x: -45
-                            y: 19
-                            width: 193
-                            height: 13
-                            orientation: Qt.Horizontal
-                        }
+        
                         font.pixelSize: 18
                     }
 
@@ -163,14 +150,7 @@ Item {
                         anchors.right: parent.right
                         verticalAlignment: Text.AlignVCenter
                         horizontalAlignment: Text.AlignHCenter
-                        ToolSeparator {
-                            id: toolSeparator2
-                            y: 20
-                            height: 13
-                            anchors.left: parent.left
-                            anchors.right: parent.right
-                            orientation: Qt.Horizontal
-                        }
+
                         font.pixelSize: 18
                     }
 
@@ -214,14 +194,7 @@ Item {
                         horizontalAlignment: Text.AlignHCenter
                         anchors.left: parent.left
                         anchors.right: parent.right
-                        ToolSeparator {
-                            id: toolSeparator3
-                            y: 20
-                            height: 13
-                            anchors.left: parent.left
-                            anchors.right: parent.right
-                            orientation: Qt.Horizontal
-                        }
+                       
                         font.pixelSize: 18
                     }
 
@@ -266,15 +239,7 @@ Item {
                         anchors.left: parent.left
                         anchors.right: parent.right
                         horizontalAlignment: Text.AlignHCenter
-                        ToolSeparator {
-                            id: toolSeparator4
-                            y: 20
-                            width: 193
-                            height: 13
-                            anchors.left: parent.left
-                            anchors.right: parent.right
-                            orientation: Qt.Horizontal
-                        }
+                       
                         verticalAlignment: Text.AlignVCenter
                         font.pixelSize: 18
                     }
