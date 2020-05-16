@@ -1,8 +1,13 @@
-
+"""
+# TODO: 
+#   * Add copyright, encoding, etc
+#   * Logger rather than print()
+#   * QCore.Property value sholud be set to constart=True
+"""
 import random
 import time
-# from main import args
 
+# Todo: move config out
 import config
 from PySide2 import QtCore, QtQml, QtWidgets
 
@@ -11,16 +16,18 @@ class AlarmManager(QtCore.QObject):
     # create a signal
     alarmStatus = QtCore.Signal(str, name='alarmStatus')
 
+    # Initialize attributes
+    _status = None
+    _title = None
+    _info = None
+    _delay = 0.5
+    _starter = False
+    _goOn = False
+    _threader = None
+
     def __init__(self, parent=None, r=None):
         # if 'parent' is given then it will inherit it
         super(AlarmManager, self).__init__(parent)
-        self._status = None
-        self._title = None
-        self._info = None
-        self._delay = 0.5
-        self._starter = False
-        self._goOn = False
-        self._threader = None
 
     @QtCore.Property(str)
     def status(self):
@@ -59,7 +66,9 @@ class AlarmManager(QtCore.QObject):
         self._threader.start()
 
     def core(self):
+        # Why is this an infinite loop here? There's no way out! Shouldn't this just be an event loop?
         while self._goOn:
+            # TODOA what happens if redis is not used? This would end in an infinet loop!
             if config.useredis:
                 self._status = config.r.get("alarm_status")
                 self._title = config.r.get("alarm_title")
@@ -72,6 +81,9 @@ class AlarmManager(QtCore.QObject):
 
 
 class Threader(QtCore.QThread):
+    # Initialize attributes
+    _core = None
+
     def __init__(self, core, parent=None):
         super(Threader, self).__init__(parent)
         self._core = core

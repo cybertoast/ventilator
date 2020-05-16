@@ -1,3 +1,6 @@
+"""
+TODO: add copyright, license, encoding
+"""
 
 import random
 import time
@@ -10,6 +13,8 @@ from PySide2 import QtCore, QtQml, QtWidgets
 class ChartManager(QtCore.QObject):
     # create a signal
     dataReady = QtCore.Signal(QtCore.QPointF, name='dataReady')
+
+    # TODO: move all initialization here
 
     def __init__(self, parent=None, r=None):
         # if 'parent' is given then it will inherit it
@@ -34,6 +39,7 @@ class ChartManager(QtCore.QObject):
         # val is returned from qml
         if self._multiplier == val:
             return
+        # TODO: move to logger
         print(val)
         if val:
             self.start()
@@ -49,6 +55,8 @@ class ChartManager(QtCore.QObject):
     def setDelay(self, val):
         if self._delay == val:
             return
+
+        # TODO: move to logger
         print(val)
         self._delay = val
 
@@ -60,6 +68,7 @@ class ChartManager(QtCore.QObject):
     def setXIncrement(self, val):
         if self._xIncrement == val:
             return
+        # TODO: move to logger
         print(val)
         self._xIncrement = val
 
@@ -99,6 +108,12 @@ class ChartManager(QtCore.QObject):
 
 
 class Threader(QtCore.QThread):
+    """TOOD: Add desription
+
+    Arguments:
+        QtCore {[type]} -- [description]
+    """
+
     def __init__(self, core, parent=None):
         super(Threader, self).__init__(parent)
         self._core = core

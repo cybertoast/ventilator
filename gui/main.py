@@ -1,3 +1,6 @@
+"""
+TODO: Encoding, license, copyright, authorship
+"""
 # https://oxfordmedicine.com/view/10.1093/med/9780198784975.001.0001/med-9780198784975-chapter-7
 import argparse
 import os
@@ -18,6 +21,7 @@ from patient import Patient
 from chart_manager import ChartManager
 
 
+# TODO: This should all be in the main() function
 parser = argparse.ArgumentParser(description='Run the main GUI code')
 parser.add_argument('-r', '--redis', action='store_true',
                     help="run GUI and send information to redis")
@@ -33,6 +37,8 @@ if config.args.fullscreen:
 
 
 def main():
+    # TODO: should be in a config file, and well documented!
+    # TODO: we don't know what the environment settings should be!!
     os.environ["QT_QUICK_CONTROLS_STYLE"] = "Material"
     app = QtWidgets.QApplication(sys.argv)
 
