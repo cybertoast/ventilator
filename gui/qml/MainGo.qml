@@ -11,21 +11,31 @@ import "."
 
 Item {
     id: root
-    width: 800
-    height: 480
+    anchors.fill: parent
     signal alarm(string status)
     Component.onCompleted: {
         AlarmManager.alarmStatus.connect(root.alarm)
     }
-    onAlarm:{
-        if (status !== "none"){
-            alarm.visible=true
-        } else{
+    onAlarm: {
+        if (status !== "none") {
+            alarm.visible = true
+        } else {
             alarm.visible = false
         }
         status1.text = AlarmManager.status
         title1.text = AlarmManager.title
         info1.text = AlarmManager.info
+    }
+
+    SideBar {
+        id: sidebar
+        anchors.left: parent.left
+        anchors.leftMargin: 0
+        anchors.bottom: parent.bottom
+        anchors.top: parent.top
+        anchors.topMargin: 0
+        width: Config.sidebar_width
+
     }
 
     Rectangle {
@@ -80,11 +90,13 @@ Item {
         }
 
         Image {
-            id: image
+            id: logo
             x: 484
             y: 0
             width: 166
             height: 46
+            anchors.rightMargin: 20
+            anchors.right: parent.right
             source: "assets/DFL-LOGO-B.png"
             fillMode: Image.PreserveAspectFit
         }
@@ -107,11 +119,9 @@ Item {
             x: 2
             y: 3
 
-            ColumnLayout {
-            }
+            ColumnLayout {}
 
-            ColumnLayout {
-            }
+            ColumnLayout {}
         }
 
         ColumnLayout {
@@ -159,16 +169,6 @@ Item {
         }
     }
 
-    SideBar {
-        id: sidebar
-        anchors.left: parent.left
-        anchors.leftMargin: 0
-        anchors.bottom: parent.bottom
-        anchors.top: parent.top
-        anchors.topMargin: 0
-        width: Config.sidebar_width
-
-    }
 
 
 
@@ -176,6 +176,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:1;anchors_width:150}D{i:13;anchors_height:400;anchors_width:200}
+    D{i:0;autoSize:true;height:480;width:640}D{i:2;anchors_width:150}D{i:14;anchors_height:400;anchors_width:200}
 }
 ##^##*/

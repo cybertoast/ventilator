@@ -1,6 +1,3 @@
-"""
-TODO: add copyright, license, encoding
-"""
 
 import random
 import time
@@ -11,15 +8,13 @@ import config
 from PySide2 import QtCore, QtQml, QtWidgets
 
 
-class ChartManager(QtCore.QObject):
+class ChartManager3(QtCore.QObject):
     # create a signal
     dataReady = QtCore.Signal(QtCore.QPointF, name='dataReady')
 
-    # TODO: move all initialization here
-
     def __init__(self, parent=None, r=None):
         # if 'parent' is given then it will inherit it
-        super(ChartManager, self).__init__(parent)
+        super(ChartManager3, self).__init__(parent)
         self._currX = 0
         self._currY = 0
         self._delay = 0.1
@@ -36,8 +31,6 @@ class ChartManager(QtCore.QObject):
     def setDelay(self, val):
         if self._delay == val:
             return
-
-        # TODO: move to logger
         print(val)
         self._delay = val
 
@@ -49,7 +42,6 @@ class ChartManager(QtCore.QObject):
     def setXIncrement(self, val):
         if self._xIncrement == val:
             return
-        # TODO: move to logger
         print(val)
         self._xIncrement = val
 
@@ -59,7 +51,7 @@ class ChartManager(QtCore.QObject):
         self._currX += self._xIncrement
         if not config.useredis:
             self.test = self.test+self._delay
-            self._currY = math.sin(self.test*2)*10+25
+            self._currY = math.sin(self.test*3)*random.randint(5, 10)+25
         else:
             self._currY = float(config.r.get("pressure"))
 
@@ -90,12 +82,6 @@ class ChartManager(QtCore.QObject):
 
 
 class Threader(QtCore.QThread):
-    """TOOD: Add desription
-
-    Arguments:
-        QtCore {[type]} -- [description]
-    """
-
     def __init__(self, core, parent=None):
         super(Threader, self).__init__(parent)
         self._core = core

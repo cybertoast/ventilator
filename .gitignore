@@ -1,4 +1,5 @@
-
+# Ignore .orig files
+*.orig
 
 #src/gui/gui qt extras
 src/gui/moc*
@@ -24,3 +25,4 @@ src/gui/docs/_*
 *.DS_Store
 Events.log
 params.json
+/gui/main.pyproject.user.9955527
