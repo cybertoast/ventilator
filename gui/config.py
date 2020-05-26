@@ -7,6 +7,7 @@ import logging
 # TODO: better log naming so that it's for this application!
 logging.basicConfig(filename='log.log', format='%(levelname)s:%(asctime)s - %(message)s',
                     datefmt='%H:%M:%S', level=logging.NOTSET)
+
 useredis = False
 
 # TODO: redis connection parameters should be configurable for each host

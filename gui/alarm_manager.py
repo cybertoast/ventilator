@@ -70,10 +70,15 @@ class AlarmManager(QtCore.QObject):
         while self._goOn:
             # TODOA what happens if redis is not used? This would end in an infinet loop!
             if config.useredis:
-                self._status = config.r.get("alarm_status")
-                self._title = config.r.get("alarm_title")
-                self._info = config.r.get("alarm_text")
-                print("emitting alarm ", self._info)
+                try:
+                    self._status = config.r.get("alarm_status")
+                    self._title = config.r.get("alarm_title")
+                    self._info = config.r.get("alarm_text")
+                except:
+                    config.logging.error("Could not get alarm data from redis")
+
+                if "none" not in self._status:
+                    print("emitting alarm ", self._info)
                 self.alarmStatus.emit(config.r.get("alarm_status"))
                 time.sleep(self._delay)
 
