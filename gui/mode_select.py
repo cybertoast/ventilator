@@ -64,15 +64,15 @@ class ModeSelect(QtCore.QObject):
     def buttonList(self):
         buttonList = ","
 
-        if self._currTrigger is not "":
+        if self._currTrigger != "":
             input_list = trigger_input[self._currTrigger]
             return buttonList.join(input_list)
 
-        if self._currBreath is not "":
+        if self._currBreath != "":
             trigger_list = breath_trigger[self._currBreath]
             return buttonList.join(trigger_list)
         # choose mode
-        if self._currMode is not "":
+        if self._currMode != "":
             # list of breath
             breath_list = mode_breath[self._currMode]
             return buttonList.join(breath_list)
