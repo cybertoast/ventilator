@@ -1,12 +1,12 @@
 package modeselect
 
 import (
-	"fmt"
-	"log"
 	"sync"
 
 	// "github.com/mzahmi/ventilator/control/alarms"
+	"github.com/go-redis/redis"
 	"github.com/mzahmi/ventilator/control/sensors"
+	"github.com/mzahmi/ventilator/logger"
 	"github.com/mzahmi/ventilator/params"
 )
 
@@ -21,26 +21,39 @@ func UpdateValues(UI *params.UserInput) {
 }
 
 // ModeSelection reads input from the GUI to select the required Mode from the user input struct
-func ModeSelection(UI *params.UserInput, s chan sensors.SensorsReading, wg *sync.WaitGroup, readStatus chan string, logger *log.Logger) {
+func ModeSelection(UI *params.UserInput, s *sensors.SensorsReading, client *redis.Client, mux *sync.Mutex, logStruct *logger.Logging) {
 	UpdateValues(UI) // calculates missing values
 	//fmt.Println(UI.Mode)
 	switch UI.Mode {
 	case "Volume A/C":
-		fmt.Println("Pressure Control Mode selected")
-		VolumeAC(UI, s, wg, readStatus)
+		//logger.Println("Pressure Control Mode selected")
+		logStruct.Event("Volume Assisted Control Mode selected")
+		VolumeAC(UI, s, client, mux, logStruct)
 	case "Pressure A/C":
-		logger.Println("Pressure Assisted Control Mode selected")
-		PressureAC(UI, s, wg, readStatus, logger)
+		// logger.Println("Pressure Assisted Control Mode selected")
+		logStruct.Event("Pressure Assisted Control Mode selected")
+		PressureAC(UI, s, client, mux, logStruct)
 	case "Pressure Support (PSV)":
-		fmt.Println("Pressure Support Control Mode selected")
-		PSV(UI, s, wg, readStatus)
+		// logger.Println("Pressure Support Control Mode selected")
+		logStruct.Event("Pressure Support Control Mode selected")
+		PSV(UI, s, client, mux, logStruct)
 	case "Volume SMIV":
-		fmt.Println("Volume SIMV Mode selected")
+		// logger.Println("Volume SIMV Mode selected")
+		logStruct.Event("Volume SIMV Mode selected")
 	case "Pressure SIMV":
-		fmt.Println("Pressure SIMV Mode selected")
+		// logger.Println("Pressure SIMV Mode selected")
+		logStruct.Event("Pressure SIMV Mode selected")
 	default:
-		fmt.Println("No github.com/mzahmi/ventilator Mode selected")
+		// logger.Println("Incorrect Mode selected")
+		logStruct.Event("Incorrect Mode selected")
 		return
+	}
+}
+
+// prints out the checked error err
+func check(err error, logStruct *logger.Logging) {
+	if err != nil {
+		logStruct.Err(err)
 	}
 }
 

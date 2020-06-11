@@ -1,11 +1,14 @@
 package modeselect
 
 import (
+	"fmt"
 	"sync"
 	"time"
 
+	"github.com/go-redis/redis"
 	"github.com/mzahmi/ventilator/control/sensors"
 	"github.com/mzahmi/ventilator/control/valves"
+	"github.com/mzahmi/ventilator/logger"
 	"github.com/mzahmi/ventilator/params"
 )
 
@@ -13,14 +16,14 @@ import (
 // 	Triggering:	Pressure/Flow
 // 	Cycling: 	Flow
 // 	Control: 	Pressure
-func PSV(UI *params.UserInput, s chan sensors.SensorsReading, wg *sync.WaitGroup, readStatus chan string) {
-	defer wg.Done()
+func PSV(UI *params.UserInput, s *sensors.SensorsReading, client *redis.Client, mux *sync.Mutex, logStruct *logger.Logging) {
 
 	PressurePID := NewPIDController(0.5, 0.5, 0.5) // takes in P, I, and D values
 
 	//Check trigger type
 	switch UI.PatientTriggerType {
 	case "Pressure Trigger  ":
+		logStruct.Event(fmt.Sprintf("Pressure Trigger is set at %v cmH2O\n", UI.PressureTrigSense))
 		//Calculate trigger threshhold with PEEP and sensitivity
 		PTrigger := UI.PEEP + UI.PressureTrigSense
 
@@ -58,9 +61,11 @@ func PSV(UI *params.UserInput, s chan sensors.SensorsReading, wg *sync.WaitGroup
 				valves.ExProp.IncrementValve(0) // closes the valve
 			}
 			// if it's stop or exit then close valves and break loop
-			trig := <-readStatus
+			trig, err := client.Get("status").Result()
+			check(err, logStruct)
 			if (trig == "stop") || (trig == "exit") {
-				valves.CloseAllValves(&valves.ExProp, &valves.InProp)
+				// valves.CloseAllValves(&valves.MIns, &valves.MExp)
+				// logger.Println("All valves closed")
 				break
 			} else {
 				continue
@@ -68,6 +73,7 @@ func PSV(UI *params.UserInput, s chan sensors.SensorsReading, wg *sync.WaitGroup
 		}
 	case "Flow Trigger  ":
 		//Calculate trigger threshhold with flow trig sensitivity
+		logStruct.Event(fmt.Sprintf("Flow Trigger is set at %v cmH2O\n", UI.FlowTrigSense))
 		FTrigger := UI.FlowTrigSense
 		//Begin loop
 		for {
@@ -92,9 +98,11 @@ func PSV(UI *params.UserInput, s chan sensors.SensorsReading, wg *sync.WaitGroup
 				valves.ExProp.IncrementValve(0) // closes the valve
 			}
 			// if it's stop or exit then close valves and break loop
-			trig := <-readStatus
+			trig, err := client.Get("status").Result()
+			check(err, logStruct)
 			if (trig == "stop") || (trig == "exit") {
-				valves.CloseAllValves(&valves.ExProp, &valves.InProp)
+				// valves.CloseAllValves(&valves.MIns, &valves.MExp)
+				// logger.Println("All valves closed")
 				break
 			} else {
 				continue
