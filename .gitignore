@@ -1,7 +1,24 @@
-# Ignore .orig files
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Ignore git-merge .orig files
 *.orig
 
-#src/gui/gui qt extras
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Log files should not be committed
+*.log
+
+# QT stuff and extras
 src/gui/moc*
 src/gui/*.
 src/gui/*.bckp
@@ -22,7 +39,17 @@ src/gui/Mfile*
 src/gui/deploy
 src/gui/windows
 src/gui/docs/_*
+
+# OSX helpers
 *.DS_Store
-Events.log
+
+# Specific parameter JSON files
 params.json
+
+# Compiled binaries, that come out of `go build main.go`
+ventilator
+main
+vent
+
+# PyQT build files
 /gui/main.pyproject.user.9955527
